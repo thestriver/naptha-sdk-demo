@@ -29,7 +29,7 @@ else:
 logo_url = "https://pbs.twimg.com/profile_images/1844091788589465600/_yY1wtJu_400x400.png"
 
 def create_agents_table(agents):
-    """Convert agents data to pandas DataFrame for display"""
+    """Convert agents data for display"""
     if not agents:
         return
 
@@ -38,19 +38,14 @@ def create_agents_table(agents):
         'Name': agent.get('name', ''),
         'ID': agent.get('id', '')[:15] + '...',
         'Author': agent.get('author', '')[:15] + '...',
-        'Description': agent.get('description', '')[:30] + '...' if len(agent.get('description', '')) > 30 else agent.get('description', ''),
-        'Parameters': agent.get('parameters', ''),
-        'Module URL': agent.get('module_url', ''),
-        'Module Type': agent.get('module_type', ''),
-        'Version': agent.get('module_version', '')
+        'Description': agent.get('description', '')[:30] + '...' if len(agent.get('description', '')) > 30 else agent.get('description', '')
     } for agent in agents]
 
-    # Convert to DataFrame and display
-    df = pd.DataFrame(agents_data)
-    st.table(df)
+    # Display using Streamlit
+    st.table(agents_data)
 
 def create_nodes_table(nodes):
-    """Convert nodes data to pandas DataFrame for display"""
+    """Convert nodes data for display"""
     if not nodes:
         return
 
@@ -61,13 +56,11 @@ def create_nodes_table(nodes):
         'Architecture': node.get('arch', ''),
         'OS': node.get('os', ''),
         'GPUs': node.get('num_gpus', 0),
-        'Models': ', '.join(node.get('ollama_models', [])),
-        'Routing': node.get('routing', '')
+        'Models': ', '.join(node.get('ollama_models', []))
     } for node in nodes]
 
-    # Convert to DataFrame and display
-    df = pd.DataFrame(nodes_data)
-    st.table(df)
+    # Display using Streamlit
+    st.table(nodes_data)
 
 
 async def verify_credentials():
