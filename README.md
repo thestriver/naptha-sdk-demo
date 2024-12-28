@@ -28,7 +28,9 @@ A Streamlit application demonstrating the capabilities of the Naptha SDK.
 4. Create a `.env` file with your credentials:   
 ```
    HUB_USER=your_username
-   HUB_PASS=your_password   
+   HUB_PASS=your_password
+   HUB_URL=ws://node.naptha.ai:3001/rpc
+   NODE_URL=http://node.naptha.ai:7001
 ```
 5. Run the application:   
 ```bash
@@ -39,5 +41,7 @@ A Streamlit application demonstrating the capabilities of the Naptha SDK.
 
 - `HUB_USER`: Your Naptha Hub username
 - `HUB_PASS`: Your Naptha Hub password
+- `HUB_URL`: Naptha Hub URL (default: ws://node.naptha.ai:3001/rpc)
+- `NODE_URL`: Naptha Node URL (default: http://node.naptha.ai:7001)
 - `OPENAI_API_KEY`: OpenAI API Key (optional to use Chat agent modules)
 - `STABILITY_API_KEY`: Stability API Key (optional to use Image agent modules)
