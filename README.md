@@ -4,7 +4,13 @@ A Streamlit application demonstrating the capabilities of the Naptha SDK.
 
 ## Requirements
 
-- Python 3.10 or higher (< 3.13) - (Naptha SDK requires Python >=3.10, <=3.13)
+- Python 3.10 or higher (< 3.13) - (`Naptha SDK requires Python >=3.10, <=3.13`)
+
+## Features
+
+- View available Nodes and Agents
+- Test agents in the Agent Playground
+- Run Chat & Inference operations
 
 ## Setup
 
@@ -28,12 +34,6 @@ A Streamlit application demonstrating the capabilities of the Naptha SDK.
 ```bash
    streamlit run app.py   
 ```
-
-## Features
-
-- View available Nodes and Agents
-- Test agents in the Agent Playground
-- Run Chat & Inference operations
 
 ## Environment Variables
 
