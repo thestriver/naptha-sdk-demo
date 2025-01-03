@@ -62,6 +62,20 @@ def create_nodes_table(nodes):
     # Display using Streamlit
     st.table(nodes_data)
 
+def create_personas_table(personas):
+    """Convert personas data for display"""
+    if not personas:
+        return
+
+    # Extract relevant data into a list of dictionaries
+    personas_data = [{
+        'Name': persona.get('name', ''),
+        'ID': persona.get('id', '')[:15] + '...',
+        'Description': persona.get('description', '')[:30] + '...' if len(persona.get('description', '')) > 30 else persona.get('description', '')
+    } for persona in personas]
+
+    # Display using Streamlit
+    st.table(personas_data)
 
 async def verify_credentials():
     """Verify credentials work"""
@@ -114,6 +128,19 @@ async def list_agents():
             return agents
     except Exception as e:
         st.error(f"Failed to list agents: {str(e)}")
+        return None
+
+async def list_personas():
+    """List personas with new client"""
+    try:
+        async with Naptha() as naptha:
+            await naptha.hub.signin(os.getenv("HUB_USER"), os.getenv("HUB_PASS"))
+            personas = await naptha.hub.list_personas()
+            if personas:
+                create_personas_table(personas)
+            return personas
+    except Exception as e:
+        st.error(f"Failed to list personas: {str(e)}")
         return None
 
 async def run_hello_world_agent(firstname, surname):
@@ -203,6 +230,12 @@ def main():
                 agents = asyncio.run(list_agents())
                 if agents:
                     st.write(agents)
+                
+            st.header("Available Personas")
+            if st.button("Refresh Personas"):
+                personas = asyncio.run(list_personas())
+                if personas:
+                    st.write(personas)
                 
         elif page == "Agent Playground":
             st.header("Agent Playground")
